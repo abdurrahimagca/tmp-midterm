@@ -13,14 +13,13 @@ images:
     caption: "This is the first image."
   - src: "https://example.com/image2.jpg"
     alt: "Image 2 description"
-    caption: "This is the second image.
+    caption: "This is the second image."
 useful:
   - src: "https://www.slideshare.net/slideshow/endoscopes-biomedical-engineering/123337151"
     cause: "Endoskopi Sistemleri Sunumu"
 credit:
   - name: "John Doe"
     role: "Project Manager"
-    contact: "
   - name: "İrem Çorak"
     role: "Yüksek Lisans Tezi - LED Entegre Edilmiş Endoskopi Sistemi İçin LED Sürücü Tasarımı"
     source: "Pamukkale Üniversitesi Fen Bilimleri Enstitüsü Biyomedikal Mühendisliği Anabilim Dalı"
