@@ -1,0 +1,29 @@
+news:
+  - title: "New Feature Release"
+    date: 2023-10-01
+    description: "We are excited to announce the release of our new feature that enhances user experience."
+    link: "https://example.com/new-feature-release"
+  - title: "Boğaziçi Üniversitesi Ağrısız ve Hızlı Kolonoskopi İçin Robot Geliştiriyor"
+    date: 2016-10-24
+    description: "Boğaziçi Üniversitesi, kolonoskopi süresini kısaltmayı ve hasta rahatsızlığını azaltmayı amaçlayan robotik bir kolonoskopi cihazı geliştiriyor."
+    link: "https://haberler.bogazici.edu.tr/tr/haber/bogazici-universitesi-agrisiz-ve-hizli-kolonoskopi-icin-robot-gelistiriyor"
+images:
+  - src: "https://example.com/image1.jpg"
+    alt: "Image 1 description"
+    caption: "This is the first image."
+  - src: "https://example.com/image2.jpg"
+    alt: "Image 2 description"
+    caption: "This is the second image.
+useful:
+  - src: "https://www.slideshare.net/slideshow/endoscopes-biomedical-engineering/123337151"
+    cause: "Endoskopi Sistemleri Sunumu"
+credit:
+  - name: "John Doe"
+    role: "Project Manager"
+    contact: "
+  - name: "İrem Çorak"
+    role: "Yüksek Lisans Tezi - LED Entegre Edilmiş Endoskopi Sistemi İçin LED Sürücü Tasarımı"
+    source: "Pamukkale Üniversitesi Fen Bilimleri Enstitüsü Biyomedikal Mühendisliği Anabilim Dalı"
+    date: "Haziran 2022"
+    link: "https://gcris.pau.edu.tr/bitstream/11499/50937/1/%C4%B0rem%20%C3%87orak.pdf"
+    description: "Endoskopi sistemleri için rezonanslı SEPIC dönüştürücü tabanlı, yüksek verimli (%84.5) ve yüksek güç yoğunluklu (8 MHz) LED sürücü tasarımı üzerine bir çalışma."
