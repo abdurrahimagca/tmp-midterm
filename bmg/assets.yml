@@ -8,6 +8,7 @@ news:
     description: "Boğaziçi Üniversitesi, kolonoskopi süresini kısaltmayı ve hasta rahatsızlığını azaltmayı amaçlayan robotik bir kolonoskopi cihazı geliştiriyor."
     link: "https://haberler.bogazici.edu.tr/tr/haber/bogazici-universitesi-agrisiz-ve-hizli-kolonoskopi-icin-robot-gelistiriyor"
 images:
+ 
   - src: "https://example.com/image1.jpg"
     alt: "Image 1 description"
     caption: "This is the first image."
