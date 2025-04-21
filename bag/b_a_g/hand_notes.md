@@ -220,19 +220,19 @@ Sonuç: \( \text{EBOB}(48, 18) = 6 \)
 Fermat's Little Theorem, asal sayılarla ilgili önemli bir teoremdir. Bu teorem, asal sayılar ve modüler aritmetik ile ilgili birçok kriptografik uygulamada kullanılır.
 Teorem, aşağıdaki şekilde ifade edilir:
 Eğer \( p \) asal bir sayı ve \( a \) \( p \) ile tam bölünmeyen bir tam sayı ise, o zaman:
-\[ a^{(p-1)} \equiv 1 \mod p \]
+\[ a^{p-1} \equiv 1 \pmod{p} \]
 Bu teorem, asal sayılarla yapılan birçok kriptografik algoritmanın temelini oluşturur. Özellikle RSA şifreleme algoritmasında bu teorem kullanılır.
 
 ### Euler Totient Theorem
 
 Euler Totient Teoremi, asal sayılar ve modüler aritmetik ile ilgili önemli bir teoremdir. Bu teorem, Euler'in totient fonksiyonu ile ilgilidir ve aşağıdaki şekilde ifade edilir:
 Eğer \( n \) pozitif bir tam sayı ve \( a \) \( n \) ile aralarında asal bir tam sayı ise, o zaman:
-\[ a^{\phi(n)} \equiv 1 \mod n \]
+\[ a^{\phi(n)} \equiv 1 \pmod{n} \]
 Burada \( \phi(n) \), \( n \) sayısının pozitif tam bölenlerinin sayısını temsil eder. Bu teorem, özellikle RSA şifreleme algoritmasında ve diğer kriptografik uygulamalarda kullanılır.
 
 ### Euler Teoremi
 
-- Aralarında asal \(a\) ve \(n\) için:
+- Aralarında asal \( a \) ve \( n \) için:
   \[
   a^{\phi(n)} \equiv 1 \pmod{n}
   \]
@@ -241,7 +241,7 @@ Burada \( \phi(n) \), \( n \) sayısının pozitif tam bölenlerinin sayısını
   a^{\phi(n)} \cdot a \equiv a \pmod{n}
   \]
 
-### Miller-Robin Algoritması
+### Miller-Rabin Algoritması
 
 Miller-Rabin primality test, asal sayıları test etmek için kullanılan bir algoritmadır. Bu algoritma, belirli bir sayının asal olup olmadığını belirlemek için rastgele sayılar kullanır. Miller-Rabin testi, özellikle büyük asal sayılar için etkilidir ve genellikle RSA şifreleme algoritmasında kullanılır.
 
@@ -249,12 +249,12 @@ Algoritmanın temel adımları şunlardır:
 
 1. Sayıyı \( n \) olarak adlandıralım ve \( n-1 \) sayısını \( d \) ve \( 2^r \) şeklinde yazalım.
 2. Rastgele bir \( a \) sayısı seçelim (1 < \( a \) < \( n-1 \)).
-3. \( x = a^d \mod n \) hesaplayalım.
-4. Eğer \( x \equiv 1 \mod n \) veya \( x \equiv n-1 \mod n \) ise, asal olabiliriz.
+3. \( x = a^d \pmod{n} \) hesaplayalım.
+4. Eğer \( x \equiv 1 \pmod{n} \) veya \( x \equiv n-1 \pmod{n} \) ise, asal olabiliriz.
 5. Aksi takdirde, \( r-1 \) kez döngü yaparak \( x \) değerini güncelleyelim:
-   - \( x = x^2 \mod n \)
-   - Eğer \( x \equiv n-1 \mod n \) ise, asal olabiliriz.
-6. Eğer hiçbir durumda \( x \equiv n-1 \mod n \) elde edemezsek, \( n \) asal değildir.
+   - \( x = x^2 \pmod{n} \)
+   - Eğer \( x \equiv n-1 \pmod{n} \) ise, asal olabiliriz.
+6. Eğer hiçbir durumda \( x \equiv n-1 \pmod{n} \) elde edemezsek, \( n \) asal değildir.
 
 ### Deterministik Asallık Algoritması
 
@@ -266,32 +266,35 @@ Deterministic primality test, bir sayının asal olup olmadığını belirlemek 
   - AKS algoritması olarak bilinir.
   - Miller-Rabin algoritması kadar verimli görülmemektedir.
 
-### Çin Kalan Teoreması
+### Çin Kalan Teoremi
 
-Çin Kalan Teoreması, modüler aritmetik ile ilgili önemli bir teoremdir. Bu teorem, birden fazla modül altında sistematik olarak çözümler bulmamıza yardımcı olur. Özellikle kriptografik uygulamalarda ve sayısal hesaplamalarda kullanılır.
+Çin Kalan Teoremi, modüler aritmetik ile ilgili önemli bir teoremdir. Bu teorem, birden fazla modül altında sistematik olarak çözümler bulmamıza yardımcı olur. Özellikle kriptografik uygulamalarda ve sayısal hesaplamalarda kullanılır.
 
 #### Teorem
 
 Eğer \( n_1, n_2, \ldots, n_k \) asal sayılar ve \( a_1, a_2, \ldots, a_k \) tam sayılar verilmişse, o zaman aşağıdaki sistemin çözümü vardır:
 \[
-x \equiv a_1 \mod n_1 \]
-\[
-x \equiv a_2 \mod n_2 \]
-\[
-x \equiv a_k \mod n_k
+\begin{align*}
+x &\equiv a_1 \pmod{n_1} \\
+x &\equiv a_2 \pmod{n_2} \\
+&\vdots \\
+x &\equiv a_k \pmod{n_k}
+\end{align*}
 \]
+
 Bu sistemin çözümü, \( N = n_1 \cdot n_2 \cdots n_k \) ve \( N_i = \frac{N}{n_i} \) ile bulunabilir. Burada \( N_i \) her bir modülün çarpanıdır.
 
 #### Örnek
 
 Örnek olarak, aşağıdaki sistem verilsin:
 \[
-x \equiv 2 \mod 3 \]
-\[
-x \equiv 3 \mod 4 \]
-\[
-x \equiv 2 \mod 5
+\begin{align*}
+x &\equiv 2 \pmod{3} \\
+x &\equiv 3 \pmod{4} \\
+x &\equiv 2 \pmod{5}
+\end{align*}
 \]
+
 Bu sistemin çözümünü bulmak için:
 
 1. \( N = 3 \cdot 4 \cdot 5 = 60 \)
@@ -299,14 +302,13 @@ Bu sistemin çözümünü bulmak için:
 3. \( N_2 = \frac{60}{4} = 15 \)
 4. \( N_3 = \frac{60}{5} = 12 \)
 5. Her bir \( N_i \) için tersini bulalım:
-   - \( y_1 \equiv 20^{-1} \mod 3 \)
-   - \( y_2 \equiv 15^{-1} \mod 4 \)
-   - \( y_3 \equiv 12^{-1} \mod 5 \)
+   - \( y_1 \equiv 20^{-1} \pmod{3} \)
+   - \( y_2 \equiv 15^{-1} \pmod{4} \)
+   - \( y_3 \equiv 12^{-1} \pmod{5} \)
 6. Bu tersleri kullanarak \( x \) değerini hesaplayalım:
    \[
-   x \equiv a_1 \cdot N_1 \cdot y_1 + a_2 \cdot N_2 \cdot y_2 + a_3 \cdot N_3 \cdot y_3 \mod N
+   x \equiv a_1 \cdot N_1 \cdot y_1 + a_2 \cdot N_2 \cdot y_2 + a_3 \cdot N_3 \cdot y_3 \pmod{N}
    \]
-7. Sonuç olarak \( x \) değerini bulmuş oluruz.
 
 ### Özet
 
