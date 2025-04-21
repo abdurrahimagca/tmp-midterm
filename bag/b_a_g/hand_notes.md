@@ -931,3 +931,119 @@ Kriptanalizcinin sahip olduğu bilgi ve yeteneklere göre saldırılar sınıfla
 -   **Zamanlama saldırılarına** değindik.
 
 ***endofchapter4***
+
+Bölüm 5: Soyut Cebir Temelleri ve Kriptografideki Yeri
+Bu bölümde, modern kriptografinin temelini oluşturan bazı soyut cebir yapılarını inceleyeceğiz: Gruplar, Halkalar ve Cisimler. Bu yapılar, özellikle açık anahtarlı şifreleme algoritmalarının (RSA, Eliptik Eğri Kriptografisi vb.) anlaşılması ve uygulanması için kritik öneme sahiptir.
+
+5.1 Grup Teorisi (Group Theory)
+Soyut cebirde grup teorisi, grup olarak bilinen cebirsel yapıları inceler. Grup kavramı soyut cebirin merkezindedir: halkalar (rings), cisimler (fields) ve vektör uzayları gibi diğer iyi bilinen cebirsel yapılar, ek işlemler ve aksiyomlarla donatılmış gruplar olarak görülebilir. Gruplar matematiğin her yerinde karşımıza çıkar ve grup teorisinin yöntemleri cebirin birçok bölümünü etkilemiştir. Doğrusal cebirsel gruplar ve Lie grupları, grup teorisinin ilerleme kaydetmiş ve kendi başlarına konu alanları haline gelmiş iki dalıdır.
+
+Grup Nedir?
+
+Bir grup, temel olarak bir küme ve bu küme üzerinde tanımlanmış tek bir ikili işlemden (genellikle toplama veya çarpma gibi düşünülür) oluşur ve belirli kuralları (aksiyomları) sağlar:
+
+### Grup Özellikleri
+
+1. **Kapalılık (Closure)**: Kümeden alınan herhangi iki elemanın işlem sonucu yine kümenin bir elemanıdır.  
+    \( \forall a, b \in G, \; a * b \in G \) (* işlemi temsil etsin).
+
+2. **Birleşme Özelliği (Associativity)**: İşlem sırasının sonucu değiştirmediği anlamına gelir.  
+    \( \forall a, b, c \in G, \; (a * b) * c = a * (b * c) \).
+
+3. **Birim Eleman (Identity Element)**: Kümede, herhangi bir elemanla işleme girdiğinde o elemanı değiştirmeyen özel bir eleman (genellikle \( e \), toplama için 0, çarpma için 1) bulunur.  
+    \( \exists e \in G \) öyle ki \( \forall a \in G, \; a * e = e * a = a \).
+
+4. **Ters Eleman (Inverse Element)**: Kümedeki her eleman için, o elemanla işleme girdiğinde birim elemanı veren bir ters eleman bulunur.  
+    \( \forall a \in G, \; \exists a^{-1} \in G \) öyle ki \( a * a^{-1} = a^{-1} * a = e \).
+
+Eğer bir grup ek olarak değişme özelliğini (**commutativity**) de sağlıyorsa (\( \forall a, b \in G, \; a * b = b * a \)), bu gruba **Abelyen (Abelian) Grup** veya **Değişmeli Grup** denir. Örneğin, tam sayılar kümesi (\( \mathbb{Z} \)) toplama işlemiyle değişmeli bir gruptur.
+
+### 5.2 Cisimler (Fields)
+
+Matematikte cisim, üzerinde toplama, çıkarma, çarpma ve bölme işlemlerinin tanımlandığı ve bu işlemlerin rasyonel ve reel sayılardaki karşılık gelen işlemler gibi davrandığı bir kümedir. Dolayısıyla bir cisim, cebir, sayılar teorisi ve matematiğin diğer birçok alanında yaygın olarak kullanılan temel bir cebirsel yapıdır.
+
+En iyi bilinen cisimler rasyonel sayılar cismi (\(\mathbb{Q}\)), reel sayılar cismi (\(\mathbb{R}\)) ve karmaşık sayılar cismi (\(\mathbb{C}\))'dir. Rasyonel fonksiyon cisimleri, cebirsel fonksiyon cisimleri, cebirsel sayı cisimleri ve \(p\)-adik cisimler gibi birçok başka cisim de matematikte, özellikle sayılar teorisi ve cebirsel geometride yaygın olarak kullanılır ve incelenir. Çoğu kriptografik protokol, sonlu cisimlere, yani sonlu sayıda elemana sahip cisimlere dayanır.
+
+#### Cisim Tanımı
+
+Gayri resmi olarak bir cisim, üzerinde tanımlanmış iki işlemle birlikte bir kümedir: toplama işlemi (\(a + b\)) ve çarpma işlemi (\(a \cdot b\)). Her iki işlem de rasyonel sayılar ve reel sayılarda olduğu gibi benzer şekilde davranır. Bu, tüm \(a\) elemanları için bir toplamsal ters (\(-a\))'nin ve sıfır olmayan her \(b\) elemanı için bir çarpımsal ters (\(b^{-1}\))'in varlığını içerir. Bu, ters işlemler olarak adlandırılan çıkarma (\(a - b\)) ve bölme (\(a / b\))'nin (\(a - b = a + (-b)\)) ve (\(a / b = a \cdot b^{-1}\)) olarak tanımlanmasına olanak tanır. Genellikle \(a \cdot b\) çarpımı yan yana (\(ab\)) olarak gösterilir.
+
+#### Klasik Tanım
+
+Formel olarak bir cisim, \(F\) kümesi ile birlikte \(F\) üzerinde tanımlanmış toplama ve çarpma olarak adlandırılan iki ikili işlemden oluşur. \(F\) üzerindeki bir ikili işlem, \(F \times F \rightarrow F\) şeklinde bir eşlemedir, yani \(F\)'nin her sıralı eleman çiftine \(F\)'nin benzersiz olarak belirlenmiş bir elemanını karşılık getiren bir ilişkidir. \(a\) ve \(b\)'nin toplamının sonucu \(a\) ve \(b\)'nin toplamı olarak adlandırılır ve \(a + b\) ile gösterilir. Benzer şekilde, \(a\) ve \(b\)'nin çarpımının sonucu \(a\) ve \(b\)'nin çarpımı olarak adlandırılır ve \(a \cdot b\) ile gösterilir. Bu işlemlerin, cisim aksiyomları olarak adlandırılan aşağıdaki özellikleri sağlaması gerekir.
+
+Bu aksiyomların, \(F\) cisminin tüm \(a, b, c\) elemanları için geçerli olması gerekir:
+
+1. **Toplama ve Çarpmanın Birleşme Özelliği**:  
+    \(a + (b + c) = (a + b) + c\) ve \(a \cdot (b \cdot c) = (a \cdot b) \cdot c\).
+
+2. **Toplama ve Çarpmanın Değişme Özelliği**:  
+    \(a + b = b + a\) ve \(a \cdot b = b \cdot a\).
+
+3. **Toplamsal ve Çarpımsal Birim Eleman**:  
+    \(F\)'de \(a + 0 = a\) ve \(a \cdot 1 = a\) olacak şekilde iki farklı eleman \(0\) ve \(1\) bulunur.
+
+4. **Toplamsal Ters Eleman**:  
+    \(F\)'deki her \(a\) için, \(a + (-a) = 0\) olacak şekilde \(F\)'de \(-a\) ile gösterilen bir eleman (\(a\)'nın toplamsal tersi) bulunur.
+
+5. **Çarpımsal Ters Eleman**:  
+    \(F\)'deki sıfırdan farklı (\(a \neq 0\)) her \(a\) için, \(a \cdot a^{-1} = 1\) olacak şekilde \(F\)'de \(a^{-1}\) veya \(1/a\) ile gösterilen bir eleman (\(a\)'nın çarpımsal tersi) bulunur.
+
+6. **Çarpmanın Toplama Üzerine Dağılma Özelliği**:  
+    \(a \cdot (b + c) = (a \cdot b) + (a \cdot c)\).
+
+Eşdeğer ve daha öz bir tanım şöyledir: Bir cismin toplama ve çarpma olarak adlandırılan iki değişmeli işlemi vardır; toplama altında \(0\) toplamsal birim eleman olmak üzere bir gruptur; sıfır olmayan elemanlar çarpma altında \(1\) çarpımsal birim eleman olmak üzere bir grup oluşturur; ve çarpma toplama üzerine dağılır.
+
+Daha da öz olarak: Bir cisim, \(0 \neq 1\) olan ve tüm sıfır olmayan elemanların çarpma altında tersinir olduğu değişmeli bir halkadır.
+
+### 5.3 Halkalar (Rings)
+
+Matematikte halkalar, cisimleri genelleştiren cebirsel yapılardır: çarpmanın değişmeli olması gerekmez ve çarpımsal terslerin var olması gerekmez. Gayri resmi olarak bir halka, tam sayıların toplama ve çarpma özelliklerine benzer özellikler sağlayan iki ikili işlemle donatılmış bir kümedir. Halka elemanları tam sayılar veya karmaşık sayılar gibi sayılar olabileceği gibi, polinomlar, kare matrisler, fonksiyonlar ve kuvvet serileri gibi sayısal olmayan nesneler de olabilir.
+
+#### Halka Tanımı
+
+Bir halka, halka aksiyomları olarak adlandırılan aşağıdaki üç aksiyom kümesini sağlayan \(+\) (toplama) ve \(\cdot\) (çarpma) olmak üzere iki ikili işlemle donatılmış bir \(R\) kümesidir:
+
+1. **\(R\), toplama altında bir Abelyen gruptur**, yani:
+    - Tüm \(a, b, c \in R\) için \((a + b) + c = a + (b + c)\) (\(+\) birleşmelidir).
+    - Tüm \(a, b \in R\) için \(a + b = b + a\) (\(+\) değişmelidir).
+    - \(R\)'de tüm \(a \in R\) için \(a + 0 = a\) olacak şekilde bir \(0\) elemanı vardır (\(0\) toplamsal birim elemandır).
+    - \(R\)'deki her \(a\) için \(a + (-a) = 0\) olacak şekilde \(R\)'de bir \(-a\) elemanı vardır (\(-a\), \(a\)'nın toplamsal tersidir).
+
+2. **\(R\), çarpma altında bir monoiddir**, yani:
+    - Tüm \(a, b, c \in R\) için \((a \cdot b) \cdot c = a \cdot (b \cdot c)\) (\(\cdot\) birleşmelidir).
+    - \(R\)'de tüm \(a \in R\) için \(a \cdot 1 = a\) ve \(1 \cdot a = a\) olacak şekilde bir \(1\) elemanı vardır (\(1\) çarpımsal birim elemandır).
+
+3. **Çarpma, toplamaya göre dağılımlıdır**, yani:
+    - Tüm \(a, b, c \in R\) için \(a \cdot (b + c) = (a \cdot b) + (a \cdot c)\) (soldan dağılma).
+    - Tüm \(a, b, c \in R\) için \((b + c) \cdot a = (b \cdot a) + (c \cdot a)\) (sağdan dağılma).
+
+Gösterimde, çarpma sembolü (\(\cdot\)) genellikle atılır, bu durumda \(a \cdot b\), \(ab\) olarak yazılır.
+
+#### Özetle İlişki
+
+Her cisim aynı zamanda bir halkadır, ancak her halka bir cisim değildir (örneğin, tam sayılar (\(\mathbb{Z}\)) bir halkadır ama cisim değildir, çünkü \(1\) ve \(-1\) dışındaki elemanların çarpımsal tersleri tam sayı değildir). Hem halkalar hem de cisimler, toplama işlemi altında bir Abelyen grup yapısına sahiptir. Cisimlerde ek olarak, sıfır dışındaki elemanlar çarpma işlemi altında da bir Abelyen grup oluşturur.
+
+### 5.4 Grup Teorisi ve Kriptografi
+
+Eliptik eğri kriptografisinde, açık anahtarlı kriptografi için asal mertebeli çok büyük gruplar kullanılır. Bu tür kriptografik yöntemler, geometrik nesnelerin esnekliğinden ve grup yapılarından yararlanır. Özellikle, bu grupların ayrık logaritma problemini (discrete logarithm) hesaplamayı çok zorlaştıran karmaşık yapısından faydalanılır.
+
+En eski şifreleme protokollerinden biri olan Sezar şifresi bile basit bir grup işlemi olarak yorumlanabilir. Aslında, çoğu kriptografik şema bir şekilde grupları kullanır. Örneğin, Diffie-Hellman anahtar değişimi protokolü sonlu devirli grupları (cyclic groups) kullanır. "Grup tabanlı kriptografi" terimi ise çoğunlukla örgü grubu (braid group) gibi sonsuz değişmeli olmayan grupları kullanan kriptografik protokolleri ifade eder.
+
+#### Önemli Not: Sonlu Cisimler ve Kriptografi
+
+Çoğu modern kriptografik protokol, sonlu cisimlere (finite fields) dayanır. Bu cisimler, sonlu sayıda elemana sahip olup Galois Cisimleri olarak da bilinir ve GF(p) veya GF(p^n) şeklinde gösterilir. Özellikle:
+
+- AES ve Eliptik Eğri Kriptografisi gibi modern kriptografik sistemlerin temel yapı taşlarıdır
+- Bu cisimlerdeki işlemler (toplama, çarpma, ters alma) modüler aritmetik kullanılarak verimli bir şekilde hesaplanabilir
+- Ayrık logaritma problemi gibi matematiksel zorluklar, bu cisimlerde kriptografik güvenliği sağlar
+
+
+### Polinom Aritmetiği
+Polinomlar, cebirsel ifadelerin temel yapı taşlarıdır ve birçok matematiksel yapının temelini oluşturur. Polinomlar, değişkenlerin ve katsayıların bir araya gelmesiyle oluşan matematiksel ifadelerdir. Örneğin, \(P(x) = a_n x^n + a_{n-1} x^{n-1} + \ldots + a_1 x + a_0\) şeklinde bir polinom, \(a_i\) katsayıları ile birlikte \(x\) değişkeninin farklı kuvvetlerini içerir.
+Polinomlar, toplama, çıkarma ve çarpma işlemleri altında kapalıdır. Yani, iki polinomun toplamı veya çarpımı yine bir polinomdur. Polinomların bölme işlemi ise genellikle tam sayı bölmesi gibi çalışmaz; bu nedenle, polinomlar üzerinde işlem yaparken dikkatli olunmalıdır.
+#### Polinomların Toplama ve Çarpma İşlemleri
+-
+-
+-
+ end of for now 167/200 
