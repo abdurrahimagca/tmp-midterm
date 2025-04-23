@@ -199,6 +199,18 @@ Aşırı sıkışıklık olabilir: paket gecikmesi ve kaybı.
 - **Dezavantajları:**
     - Paket anahtarlama: Gecikme ve paket kaybı riski.
     - Devre anahtarlama: Kaynak israfı, daha az esneklik.
+### İnsan İlişkilerinden Örnekler
+
+#### Devre Anahtarlama (Rezerve Edilen Kaynaklar)
+- **Örnek:** Bir restoranda masa rezervasyonu yapmak.  
+    - Rezervasyon yapıldığında, masa yalnızca sizin için ayrılır ve başka kimse tarafından kullanılamaz.  
+    - Bu, kaynakların (masa) belirli bir süre boyunca yalnızca bir kullanıcıya tahsis edilmesini temsil eder.
+
+#### Paket Anahtarlama (İstek Anında Ayrılan Kaynaklar)
+- **Örnek:** Bir kafeteryada sıraya girip sipariş vermek.  
+    - Siparişinizi verdiğinizde, kaynaklar (örneğin, kahve makinesi) sırayla herkes tarafından kullanılır.  
+    - Bu, kaynakların talep üzerine dinamik olarak paylaşılmasını temsil eder.
+
 
 ### Ağların ağı
  - Milyonlarca erişim ve ISP vardır. Bu, tüm bu ISP'lerin birleri ile de ilieitşimini bir gerek ve yeter kılar. 
