@@ -160,6 +160,15 @@ sıralama ve kayıp:
   - 1 Mbps bağlantı.
   - Her kullanıcı belirli bir süre aktif olur.
 
+Özellik | FDM (Frekans Bölmeli Çoklama) | TDM (Zaman Bölmeli Çoklama)
+Çalışma Prensibi | Her kullanıcıya farklı frekans bandı atanır | Her kullanıcıya farklı zaman dilimi atanır
+Kanal Kullanımı | Tüm kullanıcılar aynı anda farklı frekanslarda iletim yapar | Kullanıcılar sırayla veri gönderir
+Eşzamanlılık | Evet (aynı anda veri iletimi) | Hayır (sırayla veri iletimi)
+Donanım Gereksinimi | Frekans filtreleri gerekir | Zamanlama devreleri gerekir
+Senaryo Örneği | Radyo ve televizyon yayınları | Telefon santralleri, dijital veri ağları
+Bant Genişliği Kullanımı | Geniş bant gerektirir | Daha dar bant yeterlidir
+Verim | Frekanslar boşa harcanabilir (kullanıcı veri göndermese bile) | Zaman dilimi boşsa boşa harcanır
+Gecikme | Düşük | Kullanıcının sırası gelene kadar beklenir (gecikme olabilir)
 
 ### Paket Anahtarlamalı vs Devre Anahtarlamalı
 
