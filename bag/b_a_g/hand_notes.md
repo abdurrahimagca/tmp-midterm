@@ -1039,6 +1039,125 @@ En eski şifreleme protokollerinden biri olan Sezar şifresi bile basit bir grup
 - Ayrık logaritma problemi gibi matematiksel zorluklar, bu cisimlerde kriptografik güvenliği sağlar
 
 
+# Bölüm 5: Soyut Cebir Temelleri ve Kriptografideki Yeri
+
+Bu bölümde modern kriptografinin temelini oluşturan 3 önemli soyut cebirsel yapı anlatılır:
+
+- **Gruplar (Groups)**
+- **Halkalar (Rings)**
+- **Cisimler (Fields)**
+
+Özellikle açık anahtarlı şifreleme algoritmaları (RSA, Eliptik Eğri Kriptografisi vb.) bu yapılara dayanır.
+
+---
+
+## 5.1 Grup Teorisi (Group Theory)
+
+**Grup**, bir küme ve bu küme üzerinde tanımlı bir işlemle birlikte, aşağıdaki özellikleri sağlayan yapıdır.
+
+### Grup Özellikleri
+
+1. **Kapalılık (Closure)**  
+   Her a, b ∈ G için: a * b ∈ G
+
+2. **Birleşme (Associativity)**  
+   Her a, b, c ∈ G için: (a * b) * c = a * (b * c)
+
+3. **Birim Eleman (Identity)**  
+   Öyle bir e ∈ G vardır ki: a * e = e * a = a
+
+4. **Ters Eleman (Inverse)**  
+   Her a ∈ G için öyle bir a⁻¹ ∈ G vardır ki: a * a⁻¹ = a⁻¹ * a = e
+
+**Eğer a * b = b * a** her zaman sağlanıyorsa, bu gruba **Abelyen (veya değişmeli) grup** denir.  
+Örnek: Tam sayılar kümesi (Z), toplama işlemine göre bir Abelyen gruptur.
+
+---
+
+## 5.2 Cisimler (Fields)
+
+**Cisim**, üzerinde toplama, çıkarma, çarpma ve bölme işlemleri tanımlı olan bir kümedir. Bu işlemler rasyonel veya reel sayılardaki işlemler gibi davranır.
+
+### Klasik Cisim Özellikleri
+
+Bir küme F, toplama (+) ve çarpma (·) işlemleri için şu özellikleri sağlar:
+
+1. **Toplama ve Çarpmanın Birleşmeli Olması**  
+   a + (b + c) = (a + b) + c  
+   a · (b · c) = (a · b) · c
+
+2. **Toplama ve Çarpmanın Değişmeli Olması**  
+   a + b = b + a  
+   a · b = b · a
+
+3. **Toplamsal ve Çarpımsal Birim Eleman**  
+   a + 0 = a  
+   a · 1 = a
+
+4. **Toplamsal Ters**  
+   Her a için: a + (−a) = 0
+
+5. **Çarpımsal Ters**  
+   Her a ≠ 0 için: a · (1/a) = 1
+
+6. **Dağılma Özelliği**  
+   a · (b + c) = a·b + a·c
+
+**Kısaca:**  
+- (F, +) → Abelyen grup  
+- (F − {0}, ·) → Abelyen grup  
+- Çarpma, toplama üzerine dağılır
+
+Örnekler:  
+- Rasyonel sayılar (Q)  
+- Reel sayılar (R)  
+- Sonlu cisimler (GF(p), GF(pⁿ)) → kriptografide çok kullanılır
+
+---
+
+## 5.3 Halkalar (Rings)
+
+**Halka**, toplama ve çarpma işlemleri tanımlı bir kümedir ama çarpımsal tersin ve değişmenin olması gerekmez.
+
+### Halka Özellikleri
+
+1. **(R, +) → Abelyen Grup**  
+   - a + b = b + a  
+   - a + 0 = a  
+   - a + (−a) = 0
+
+2. **(R, ·) → Monoid**  
+   - (a·b)·c = a·(b·c)  
+   - a·1 = 1·a = a
+
+3. **Çarpma, toplama üzerine dağılır**  
+   - a·(b + c) = a·b + a·c
+
+**Özet:**  
+Her cisim aynı zamanda bir halkadır. Ama her halka bir cisim değildir.  
+Örnek: Tam sayılar (Z) → halka ama cisim değil (çünkü 2⁻¹ bir tam sayı değil).
+
+---
+
+## 5.4 Grup Teorisi ve Kriptografi
+
+- Kriptografi, çoğunlukla **sonlu gruplar** ve **sonlu cisimler** üzerine kuruludur.
+- Eliptik eğri kriptografisi gibi sistemler, karmaşık grup yapıları ve **ayrık logaritma problemleri** üzerine dayanır.
+- Diffie-Hellman gibi protokoller, **devirli gruplar** (cyclic groups) kullanır.
+- Sezar şifresi bile basit bir grup işlemi olarak görülebilir.
+
+---
+
+### Sonlu Cisimler ve Kriptografi
+
+- **GF(p)** veya **GF(pⁿ)** şeklinde gösterilir  
+- AES ve Eliptik Eğri Kriptografisi bu yapılar üzerine kuruludur  
+- İşlemler modüler aritmetik ile yapılır  
+- Matematiksel zorluk (örneğin ayrık logaritma), kriptografik güvenlik sağlar
+
+---
+
+
 ### Polinom Aritmetiği
 Polinomlar, cebirsel ifadelerin temel yapı taşlarıdır ve birçok matematiksel yapının temelini oluşturur. Polinomlar, değişkenlerin ve katsayıların bir araya gelmesiyle oluşan matematiksel ifadelerdir. Örneğin, \(P(x) = a_n x^n + a_{n-1} x^{n-1} + \ldots + a_1 x + a_0\) şeklinde bir polinom, \(a_i\) katsayıları ile birlikte \(x\) değişkeninin farklı kuvvetlerini içerir.
 Polinomlar, toplama, çıkarma ve çarpma işlemleri altında kapalıdır. Yani, iki polinomun toplamı veya çarpımı yine bir polinomdur. Polinomların bölme işlemi ise genellikle tam sayı bölmesi gibi çalışmaz; bu nedenle, polinomlar üzerinde işlem yaparken dikkatli olunmalıdır.
