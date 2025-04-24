@@ -295,3 +295,300 @@ d (düğüm) = d (işlem) + d (sıra) + d (iletim) + d(yayılma)
   - \( s \): Ortamda yayılma hızı (~\( 2 \times 10^8 \) m/s).
 
 ***endofchapter1***
+
+## Slayt 2
+
+***already mentioned***
+
+![alt text](image-5.png)
+Önceki bağ ait sıra (veya önbellek) belli bir 
+kapasiteye sahiptir.
+- Dolmuş bir sıraya gelen paketler düşürülür 
+  (kayıp).
+- Kaybolan paket önceki düğüm veya kaynak uç 
+  sistemi tarafından tekrar iletilebilir ya da tekrar 
+  iletilmez.
+
+  ## İş hacmi
+    - Bir düğümden diğerine iletilen toplam veri miktarıdır. 
+    - İş hacmi: Bir düğümden geçen toplam bit sayısı.
+    - İş hacmi = bit/saniye x saniye
+**darboğaz bağ**: iş hacmi üzerinde kısıtlayıcı bağ
+paketin kaybolduktan sonra tekrar iletilip iletilmeyeceğini belirleyen şey protokoldür
+
+🌐 İnternette İş Hacmi (Throughput) ve Darboğaz Mantığı
+
+Bir uçtan uca bağlantıda (örneğin bir client’tan server’a veri gönderdiğimizde) veri aktarım hızını etkileyen 3 temel sınır vardır:
+
+    Rc → Client'ın gönderme kapasitesi (gönderici hız limiti)
+
+    Rs → Server'ın alma kapasitesi (alıcı hız limiti)
+
+    R → Aradaki omurga hattının kapasitesi (paylaşılan ağ – örneğin internet omurgası)
+
+Eğer 10 farklı bağlantı aynı anda bu R kapasiteli omurgayı kullanıyorsa, adil paylaşım varsayımıyla her biri R / 10 kapasiteye sahip olur.
+📌 Temel Formül:
+
+Her bağlantının uçtan uca veri aktarım kapasitesi:
+▶️ min(Rc, Rs, R/10)
+
+Bu demek oluyor ki:
+
+    En yavaş kısımdan fazla veri geçemez.
+
+    Yani "en dar boru" hangisiyse o belirleyici olur.
+
+📊 Duruma Göre Örnekler:
+1. Client Darboğaz (Rc en düşük)
+
+    Rc = 2 Mbps
+
+    Rs = 10 Mbps
+
+    R = 50 Mbps → R/10 = 5 Mbps
+
+    👉 min(2, 10, 5) = 2 Mbps
+
+    Client gönderemediği için sistem onun hızına uyar.
+
+2. Server Darboğaz
+
+    Rc = 10 Mbps
+
+    Rs = 3 Mbps
+
+    R = 50 Mbps → R/10 = 5 Mbps
+
+    👉 min(10, 3, 5) = 3 Mbps
+
+    Server bu kadar alabiliyor, hız burada kısıtlanıyor.
+
+3. Omurga Darboğaz
+
+    Rc = 10 Mbps
+
+    Rs = 10 Mbps
+
+    R = 30 Mbps → R/10 = 3 Mbps
+
+    👉 min(10, 10, 3) = 3 Mbps
+
+    Client ve server hızlı ama ağ kapasitesi yeterli değil, burada tıkanıyor.
+
+🧠 Notlar:
+
+    Rc (client rate): Kullanıcının evindeki internet upload/download kapasitesi olabilir. Örn: mobil veri, Wi-Fi vb.
+
+    Rs (server rate): Hizmet sağlayan sunucunun bağlantı kapasitesi. Örn: Spotify, YouTube sunucuları.
+
+    R: İnternetteki ortak boru hattı gibi. Aynı anda birçok kullanıcı paylaşır. Büyük sistemlerde bu omurga ağı olur.
+
+🎓 Pratikte Ne Olur?
+
+Çoğunlukla:
+
+    Ev kullanıcısında Rc düşüktür (upload genelde kötüdür).
+
+    Mobilde R/10 düşer, çünkü aynı baz istasyonunu herkes kullanır.
+
+    Serverlar genelde güçlüdür ama seninle aradaki ağ darboğaz olabilir.
+
+    **Katmanlama **gerek ve yeterdir**
+    atmanlama = Her katman sadece kendi işini yapar
+
+Her katmanın belirli görevleri ve sorumlulukları vardır. Bu da hem gereklidir hem de yeterlidir, çünkü:
+✅ Gerekli çünkü:
+
+    Birbirinden bağımsız sistemleri (donanım, yazılım) uyumlu hale getirir.
+
+    Standartlaştırmayı sağlar: TCP/IP, HTTP gibi protokoller her yerde çalışabilir.
+
+    Hatalar daha rahat izlenir, sorun çözmek kolaylaşır.
+
+✅ Yeter çünkü:
+
+    Her katman sadece kendi alt ve üst katmanıyla konuşur.
+
+    Yukarıdan gelen veriyi işleyip alttakine geçirir → bu işlem zinciri iletişimi baştan sona sağlar.
+
+    Böylece interneti global, ölçeklenebilir ve bakımı kolay bir hale getirir.
+
+📶 OSI ya da TCP/IP Katmanlarıyla Bağlayalım:
+Katman (OSI)	Ne işe yarar?
+7 - Uygulama	Kullanıcıya en yakın: WhatsApp, HTTP
+6 - Sunum	Şifreleme, sıkıştırma
+5 - Oturum	Bağlantı yönetimi
+4 - Taşıma (TCP/UDP)	Paketleri sıralı ve güvenli yolla yolla
+3 - Ağ (IP)	Hangi bilgisayara gidecek? (Routing)
+2 - Veri Bağlantısı	Hangi cihazla? (MAC adresi)
+1 - Fiziksel	Elektrik, fiber, kablosuz sinyal
+
+Her biri sadece altındakini kullanarak çalışıyor. Bu da sistemin hem modüler hem sürdürülebilir olmasını sağlıyor.
+🎯 Özet: Katmanlama Neden Gerekli ve Yeterlidir?
+
+✅ Gerekli çünkü:
+
+    Karmaşıklığı azaltır.
+
+    Sistemler arası uyumu sağlar.
+
+    Arızayı izole etmeye yardımcı olur.
+
+✅ Yeterlidir çünkü:
+
+    Her katman yalnızca kendi işini yapar.
+
+    Alt ve üst katmanla konuşarak tüm sistem çalışır.
+
+    Tek bir zincirle global ağ kurulabilir.
+
+    ![alt text](image-6.png)
+
+
+    katmanlı yapının bazı dezavantajları da vardır. Her şey güllük gülistanlık değil 😄 İşte bazı olumsuz yönleri:
+🐌 1. Performans Kaybı
+
+Her katman veriyi işleyip bir sonraki katmana ilettiği için:
+
+    Paket başlıkları eklenir (overhead),
+
+    Gecikme artabilir (her katman sırasını bekler),
+
+    Bazı işlemler yinelenebilir (örneğin şifreleme üstte de altta da olabilir).
+
+    Özellikle gerçek zamanlı uygulamalarda (VoIP, oyunlar) bu katmanlar biraz “yavaşlatıcı faktör” olabilir.
+
+🧱 2. Esneklik Azalabilir
+
+Katmanlar birbirine sıkı bağlı değil gibi görünse de:
+
+    Bazen alt katmanda bir şey değiştirmek istersin ama üst katman etkilenir.
+
+    Tersine mühendislik veya özelleştirme yapmak zorlaşır.
+
+📦 3. Fazla Veri Taşıma (Overhead)
+
+Her katman kendi başlığını ekler:
+
+    TCP başlığı, IP başlığı, Ethernet başlığı… derken bir mesajın %30’u sadece "zarf" olur.
+
+    Bu da bant genişliğini boşa harcayabilir.
+
+🤷‍♂️ 4. Teorik Katmanlar Gerçekte Karışır
+
+    OSI gibi modellerde 7 katman var ama uygulamada TCP/IP 4 katmanla çalışır.
+
+    Yani bazı katmanlar teorik kalır, pratikte tam uygulanmaz.
+
+🔧 5. Katı Kurallar: İnovasyonu Engelleyebilir
+
+    “Bu katmanda şu yapılamaz” gibi kurallar bazen yeni teknolojilere engel olabilir.
+
+    Örneğin uygulama katmanı bazı özel protokolleri kullanmak isteyebilir ama TCP/IP sınırlıdır.
+
+
+#### Page 22
+Kapsülleme, bir üst katmanın verisini alıp, kendi başlığını (header) ekleyerek alt katmana iletme işlemidir.
+
+Kapsülleme, her katmanın üst katmandan gelen veriyi alıp kendi kontrol bilgisiyle sarmalayıp (header ekleyip) alt katmana vermesidir. Veri hedefe ulaştığında, katmanlar sırayla bu başlıkları çıkarır (decapsulation) ve mesaj nihayet uygulamaya ulaşır.
+
+
+
+📌 Nedir bu Kalıcı & Kalıcı Olmayan TCP?
+🔁 1. Kalıcı Olmayan TCP (HTTP/1.0 classic)
+
+    Her dosya (HTML, CSS, resim vs.) için ayrı TCP bağlantısı açılır.
+
+    Dosya alınır, sonra bağlantı kapanır.
+
+    Yeni dosya? → Yeni TCP aç, yine kapat.
+
+🔗 2. Kalıcı TCP (Persistent, pipelined – HTTP/1.1 ve sonrası)
+
+    Bir kere TCP bağlantısı kurulur.
+
+    Aynı bağlantı üzerinden birden fazla dosya istenir.
+
+    Hatta pipeline varsa birden fazla istek ardı ardına gönderilir, cevaplar sırayla alınır.
+
+🧠 Kaç RTT Sürer?
+🧮 Temel Bilgiler:
+
+    RTT (Round Trip Time): Bir paketin karşıya gidip cevabın dönmesi süresi.
+
+    TCP bağlantısı kurmak = 1 RTT (3-way handshake)
+
+    HTTP isteği gönderip cevabı almak = 1 RTT
+
+🧪 Senaryo: Tarayıcı bir HTML dosyası + 2 resim alacak
+1. Kalıcı Olmayan TCP (Non-persistent HTTP/1.0)
+
+Her dosya için:
+
+    1 RTT → TCP bağlantısı kur
+
+    1 RTT → HTTP isteği gönder + cevabı al
+
+Yani:
+
+    HTML dosyası: 2 RTT
+
+    Resim 1: 2 RTT
+
+    Resim 2: 2 RTT
+
+Toplam: 6 RTT
+Ve her seferinde bağlantı aç-kapat işlemiyle ekstra maliyet.
+2. Kalıcı TCP (Persistent HTTP/1.1)
+
+Tüm dosyalar aynı bağlantı üzerinden:
+
+    1 RTT → TCP bağlantısı kur
+
+    1 RTT → HTML isteği + cevabı
+
+    Sonraki dosyalar: aynı bağlantıdan, bazen aynı RTT içinde istenir
+
+Toplam:
+
+    2 RTT (HTML için)
+
+        1 RTT (iki resmi sırayla almak için)
+
+    Pipeline varsa tek RTT’ye bile düşebilir!
+
+🔢 Toplam: 3 RTT (veya 2’ye kadar düşebilir)
+🥊 Karşılaştırma Tablosu:
+Özellik	Non-Persistent (HTTP/1.0)	Persistent (HTTP/1.1+)
+Bağlantı sayısı	Her dosya için ayrı	Tek bağlantı
+RTT sayısı (örnekte)	6 RTT	2-3 RTT
+Performans	Daha yavaş	Daha hızlı
+Ek yük (overhead)	Yüksek	Düşük
+🧠 Sonuç:
+
+Kalıcı TCP bağlantıları:
+
+    Hızlıdır, verimlidir, daha az RTT harcar.
+
+    Modern tarayıcıların ve HTTP/1.1+'ın standart halidir.
+
+    Bir sayfa çok sayıda kaynak içeriyorsa büyük fark yaratır.
+
+
+
+    ALI (istek) -> SUNUCU
+    SUNUCU -> ALI (kurabiye)
+    ALI (istek & kurabiye) -> SUNUCU -> Kurabiye? var kaydet neyi? x sitesinin x/y adresini t kategoprisinde ürünü şu tarihte şu kadar arayarak baktı 
+
+    MARK suckerberg -> hmmm yarrak 
+
+    ALI-> isntagram -> mark suckerberg ->  x ürünüü ,ster msiin
+
+
+    ALİ _> sunucu
+    sunucu -> sen ali misin? 
+    ali -> evet
+    sunucu -> tamam AL bunu kaydet Kurabiye
+    ali -> tmm dedi
+    ali (kurabiye) -> sunucu 
+    sunuc -> naber ali 
